@@ -58,6 +58,13 @@ RUN apt-get update -qq && \
 COPY --from=build /usr/local/bundle /usr/local/bundle
 COPY --from=build /rails /rails
 
+RUN chmod a+r /rails/config/ssl/localhost.key
+RUN chmod a+r /rails/config/ssl/localhost.crt
+
+### FIX: added for a lack of a better way for distribution
+RUN chmod a+r /rails/config/master.key
+### ^FIX
+
 # Run and own only the runtime files as a non-root user for security
 RUN useradd rails --create-home --shell /bin/bash && \
     chown -R rails:rails log tmp

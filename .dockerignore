@@ -11,7 +11,9 @@
 !/.env*.erb
 
 # Ignore all default key files.
-/config/master.key
+### FIX: commented-out for a lack of a better way for distribution
+#/config/master.key
+### ^FIX
 /config/credentials/*.key
 
 # Ignore all logfiles and tempfiles.
