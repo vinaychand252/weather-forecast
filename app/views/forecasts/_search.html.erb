@@ -1,0 +1,7 @@
+<%= form_with(url: forecast_path, method: :get) do |form| %>
+  <div class="container input-group mb-3">
+    <label for="forecast_search" class="input-group-text">USA Forecast:</label>
+    <input type="search" class="form-control" id="forecast_search" name="q" value="<%= q %>" placeholder="Enter zip code or city name or city name, state code">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+<% end %>

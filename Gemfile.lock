@@ -101,6 +101,10 @@ GEM
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
+    faraday (2.9.0)
+      faraday-net_http (>= 2.0, < 3.2)
+    faraday-net_http (3.1.0)
+      net-http
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -126,6 +130,8 @@ GEM
     mini_mime (1.1.5)
     minitest (5.21.2)
     mutex_m (0.2.0)
+    net-http (0.4.1)
+      uri
     net-imap (0.4.9.1)
       date
       net-protocol
@@ -223,6 +229,7 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (0.13.0)
     webrick (1.8.1)
     websocket (1.2.10)
     websocket-driver (0.7.6)
@@ -244,6 +251,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  faraday (~> 2.9)
   importmap-rails
   puma (>= 5.0)
   rails (~> 7.1.3)

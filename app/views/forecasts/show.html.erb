@@ -1,0 +1,33 @@
+<%= render "search", q: local_assigns[:q] ? q : '' %>
+
+<% flash.each do |_, message| %>
+  <div class="alert alert-info text-center" role="alert">
+    <%= message %>
+  </div>
+<% end %>
+
+<% if local_assigns[:forecasts] %>
+<table class="table caption-top">
+  <caption class="text-center"><%= forecasts["current"]["name"] %></caption>
+  <thead>
+    <tr>
+      <th scope="col">Time</th>
+      <th scope="col">Temperature (Fahrenheit)</th>
+      <th scope="col">Feels Like</th>
+      <th scope="col">Min / Max</th>
+      <th scope="col">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% [forecasts["current"], forecasts["third_hourly"]["list"]].flatten.each do |forecast|%>
+    <tr>
+      <th scope="row"><%= utc_to_specific(forecast["dt_txt"], forecasts["current"]["timezone"]) || "Current" %></th>
+      <td><%= forecast["main"]["temp"] %></td>
+      <td><%= forecast["main"]["feels_like"] %></td>
+      <td><%= "#{forecast["main"]["temp_min"]} / #{forecast["main"]["temp_max"]}" %></td>
+      <td><%= "#{forecast["weather"][0]["main"]} / #{forecast["weather"][0]["description"]}" %></td>
+    </tr>
+  </tbody>
+  <% end %>
+</div>
+<% end %>
