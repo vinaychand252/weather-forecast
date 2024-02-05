@@ -32,7 +32,7 @@ bin/rails test
 
 2) This uses Docker and so need to run docker build and run:
 `$ docker build -t weatherforecast:latest .`
-`$ docker run -p 3001:3001 weatherforeceast:latest`
+`$ docker run -p 3001:3001 weatherforecast:latest`
 
 3) Launch https://localhost:3001
 

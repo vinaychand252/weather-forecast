@@ -10,7 +10,6 @@ class Forecast
     @conn = Faraday.new(url: 'https://api.openweathermap.org', 
                         params: { appid: api_key, units: 'imperial' }) do |builder|
       builder.response :raise_error
-      builder.response :logger
     end
   end
 
@@ -22,6 +21,8 @@ class Forecast
       acc[v] = json
       acc
     end
+  rescue JSON::ParserError
+    nil
   end
 
   private
@@ -32,21 +33,19 @@ class Forecast
     else
       by_location(query, product:)
     end
+  rescue Faraday::Error
+    nil
   end
 
   def by_zip(zip_code, product:)
     @conn.get("/data/2.5/#{product}") do |req|
       req.params['zip'] = "#{zip_code},us"
     end
-  rescue Faraday::Error
-    nil
   end
 
   def by_location(loc, product:)
     @conn.get("/data/2.5/#{product}") do |req|
       req.params['q'] = "#{loc},us"
     end
-  rescue Faraday::Error
-    nil
   end
 end
